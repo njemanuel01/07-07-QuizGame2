@@ -1,3 +1,4 @@
+// Declare variables
 var question1 = {question:"What is the capital of Nebraska?", choices:"(1)-Omaha, (2)-Lincoln, (3)-Kearney, (4)-Fremont", answer: 2};
 var question2 = {question:"What is the state bird of Nebraska?", choices:"(1)-Robin, (2)-Bluejay, (3)-Crane, (4)-Meadowlark", answer: 4};
 var question3 = {question:"When did Nebraska become a state?", choices:"(1)-1867, (2)-1802, (3)-1912, (4)-1886", answer: 1};
@@ -6,17 +7,24 @@ var question5 = {question:"What is the largest county in Nebraska?", choices:"(1
 var question_array = [question1, question2, question3, question4, question5];
 var score = 0, count = 0;
 
+// Set initial questions
 document.getElementById("questions").innerText = question_array[count].question; 
 document.getElementById("choices").innerText = question_array[count].choices;
-  
-document.getElementById("submitter").onclick = process_answer_submission;
-  
+
+// Onclick submissions  
+document.getElementById("submitter").onclick = process_answer_submission;  
 document.getElementById("next").onclick = next_question;
 
+// Gets the input value in the answer field
+//
+// Returns a string
 function given_answer(){
   return document.getElementById("answer").value;
 }
 
+// Tests to see if input matches questions correct answer
+//
+// Returns a Boolean
 function is_correct_answer(answer_text){
   if (answer_text == question_array[count].answer) {
     return true;
@@ -24,6 +32,9 @@ function is_correct_answer(answer_text){
   return false;
 }
 
+// Sets text in the question_result div
+//
+// correct - Boolean
 function update_question_result(correct){
   if (correct) {
     score++;
@@ -33,11 +44,17 @@ function update_question_result(correct){
   }
 }
 
+// Checks answer submission
+//
+// Returns
 function process_answer_submission(){
   var user_answer = given_answer();
   update_question_result(is_correct_answer(user_answer));
 }
 
+// Sets new values to the questions and choices divs
+//
+// Returns
 function next_question(){
   count++
   if (count < 5 ) {
